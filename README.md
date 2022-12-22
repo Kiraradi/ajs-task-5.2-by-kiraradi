@@ -1,0 +1,1 @@
+# ajs-task-5.2-by-kiraradi
