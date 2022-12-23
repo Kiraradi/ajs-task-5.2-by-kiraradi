@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">96% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/25</span>
+                <span class='fraction'>24/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/14</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">95.83% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/24</span>
+                <span class='fraction'>23/24</span>
             </div>
         
             
@@ -117,7 +117,9 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,6 +130,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -135,18 +139,15 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,12 +163,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,30 +185,29 @@
 ];
 &nbsp;
 export default class Character {
-  constructor(name, type, health = 100, level = 1, attack, defence) {
+  constructor(name, type) {
+    this.checkTheName(name);
+    this.checkType(type);
     this.name = name;
     this.type = type;
-    this.health = health;
-    this.level = level;
-    this.attack = attack;
-    this.defence = defence;
-&nbsp;
-    this.checkTheName();
-    this.checkType();
+    this.health = 100;
+    this.level = 1;
+    this.attack = undefined;
+    this.defence = undefined;
   }
 &nbsp;
-  checkTheName() {
-    if (this.name.length &lt;= 2 &amp;&amp; this.name.length &lt; 10) {
+  checkTheName(name) {
+    if (name.length &lt;= 2 &amp;&amp; name.length &lt; 10) {
       throw new Error('Некорректное имя');
     }
   }
 &nbsp;
-  checkType() {
-    if (!correctTypes.some((type) =&gt; type === this.type)) {
+  checkType(type) {
+    if (!correctTypes.some((typeFromArray) =&gt; typeFromArray === type)) {
       throw new Error('Некорректный тип');
     }
   }
-&nbsp;
+  
   levelUp() {
     if (this.health &lt;= 0) {
       throw new Error('Нельзя повысить левел умершего');
@@ -216,8 +219,8 @@ export default class Character {
   }
 &nbsp;
   damage(points) {
-    if (this.health &lt;= 0) {
-      throw new Error('Персонаж мертв');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.health &lt;= 0) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Персонаж мертв');</span>
     }
     this.health -= points * (1 - this.defence / 100);
     if (this.health &lt; 0) {
@@ -225,6 +228,9 @@ export default class Character {
     }
   }
 }
+&nbsp;
+&nbsp;
+  
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -232,7 +238,7 @@ export default class Character {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-12-23T07:44:22.042Z
+                at 2022-12-23T12:32:50.581Z
             </div>
         <script src="prettify.js"></script>
         <script>

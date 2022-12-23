@@ -8,26 +8,25 @@ const correctTypes = [
 ];
 
 export default class Character {
-  constructor(name, type, health = 100, level = 1, attack, defence) {
+  constructor(name, type) {
+    this.checkTheName(name);
+    this.checkType(type);
     this.name = name;
     this.type = type;
-    this.health = health;
-    this.level = level;
-    this.attack = attack;
-    this.defence = defence;
-
-    this.checkTheName();
-    this.checkType();
+    this.health = 100;
+    this.level = 1;
+    this.attack = undefined;
+    this.defence = undefined;
   }
 
-  checkTheName() {
-    if (this.name.length <= 2 && this.name.length < 10) {
+  checkTheName(name) {
+    if (name.length <= 2 && name.length < 10) {
       throw new Error('Некорректное имя');
     }
   }
 
-  checkType() {
-    if (!correctTypes.some((type) => type === this.type)) {
+  checkType(type) {
+    if (!correctTypes.some((typeFromArray) => typeFromArray === type)) {
       throw new Error('Некорректный тип');
     }
   }

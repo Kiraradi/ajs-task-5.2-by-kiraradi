@@ -1,15 +1,14 @@
 import Bowman from '../src/Bowman';
 
-const result = new Bowman('Rob', 'Bowman', 75, 5, 75, 90);
-
 test('testing the creation of a new class Bowman', () => {
+  const result = new Bowman('Rob', 'Bowman');
   const personBowman = {
     name: 'Rob',
     type: 'Bowman',
-    health: 75,
-    level: 5,
-    attack: 75,
-    defence: 90,
+    health: 100,
+    level: 1,
+    attack: 25,
+    defence: 25,
   };
 
   expect(result).toEqual(personBowman);
@@ -25,20 +24,22 @@ test.each([
 });
 
 test('LevelUp method test', () => {
+  const result = new Bowman('Rob', 'Bowman');
   result.levelUp();
 
   const characterBowmanLevelUp = {
     name: 'Rob',
     type: 'Bowman',
     health: 100,
-    level: 6,
-    attack: 90,
-    defence: 108,
+    level: 2,
+    attack: 30,
+    defence: 30,
   };
   expect(result).toEqual(characterBowmanLevelUp);
 });
 
 test('test of the levelUp method with an error', () => {
+  const result = new Bowman('Rob', 'Bowman');
   result.health = 0;
   expect(() => {
     result.levelUp();
@@ -46,41 +47,41 @@ test('test of the levelUp method with an error', () => {
 });
 
 test('damage method test', () => {
-  const result2 = new Bowman('Rob', 'Bowman', 75, 5, 75, 90);
-  result2.damage(20);
+  const result = new Bowman('Rob', 'Bowman');
+  result.damage(20);
 
   const characterBowmanDamage = {
     name: 'Rob',
     type: 'Bowman',
-    health: 73,
-    level: 5,
-    attack: 75,
-    defence: 90,
+    health: 85,
+    level: 1,
+    attack: 25,
+    defence: 25,
   };
 
-  expect(result2).toEqual(characterBowmanDamage);
+  expect(result).toEqual(characterBowmanDamage);
 });
 
 test('damage method test 2', () => {
-  const result2 = new Bowman('Rob', 'Bowman', 75, 5, 75, 90);
-  result2.damage(200000);
+  const result = new Bowman('Rob', 'Bowman');
+  result.damage(200000);
 
   const characterBowmanDamage = {
     name: 'Rob',
     type: 'Bowman',
     health: 0,
-    level: 5,
-    attack: 75,
-    defence: 90,
+    level: 1,
+    attack: 25,
+    defence: 25,
   };
 
-  expect(result2).toEqual(characterBowmanDamage);
+  expect(result).toEqual(characterBowmanDamage);
 });
 
 test('checking the method of damage with an error', () => {
-  const result2 = new Bowman('Rob', 'Bowman', 75, 5, 75, 90);
-  result2.damage(200000);
+  const result = new Bowman('Rob', 'Bowman');
+  result.damage(200000);
   expect(() => {
-    result2.damage(50);
+    result.damage(50);
   }).toThrow();
 });
