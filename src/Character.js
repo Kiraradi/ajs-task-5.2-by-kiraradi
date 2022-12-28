@@ -19,12 +19,14 @@ export default class Character {
     this.defence = undefined;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   checkTheName(name) {
     if (name.length <= 2 && name.length < 10) {
       throw new Error('Некорректное имя');
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   checkType(type) {
     if (!correctTypes.some((typeFromArray) => typeFromArray === type)) {
       throw new Error('Некорректный тип');

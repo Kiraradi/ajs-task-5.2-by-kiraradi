@@ -19,7 +19,7 @@ test.each([
   ['error type', 'Bob', 'lol'],
 ])('error throwing test %s', (error, name, type) => {
   expect(() => {
-    new Bowman(name, type);
+    new Bowman(name, type);// eslint-disable-line no-new
   }).toThrow();
 });
 
